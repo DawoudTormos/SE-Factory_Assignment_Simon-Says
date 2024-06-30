@@ -121,11 +121,12 @@ let checkClick = (lastClick)=>{
     console.log(index)*/        //Debbugging
 
     if(lastClick != gamePattern[index]){
-        //wrong
+        //wrong You losed
         started = false;
         document.querySelector("#level-title").textContent = `Game Over. Press to start again.`
         gamePattern = [];
         index=0;
+        level = 0;
 
 
     }else if(index   ==   gamePattern.length - 1){
