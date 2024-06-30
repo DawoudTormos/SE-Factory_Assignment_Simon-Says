@@ -7,7 +7,7 @@ const buttonColors = ["red", "blue", "green", "yellow"]
 let gamePattern = [];
 let userClickedPattern = []// no need for this
 let started = false
-let level = 0
+let level = 1
 
 
 
@@ -57,8 +57,16 @@ let nextSequence = ()=>{
 
     gamePattern.push(buttonColors[randomValue]);
 
-    playAudioFile(buttonColors[randomValue] + "Audio");
-    animate(buttonColors[randomValue]);
+    setTimeout(function() {
+
+
+        playAudioFile(buttonColors[randomValue] + "Audio");
+        animate(buttonColors[randomValue]);
+    
+    
+    
+        }, 900);  
+
     pressingAllowed = true;
     level++;
 }
@@ -114,6 +122,8 @@ let animate = (div)=>{
 
 
 let checkClick = (lastClick)=>{
+    playAudioFile(lastClick + "Audio");
+    animate(lastClick);
     /*console.log(lastClick)
     console.log(gamePattern[index])
 
@@ -126,12 +136,15 @@ let checkClick = (lastClick)=>{
         document.querySelector("#level-title").textContent = `Game Over. Press to start again.`
         gamePattern = [];
         index=0;
-        level = 0;
+        level = 1;
 
 
     }else if(index   ==   gamePattern.length - 1){
         //correct input pattern by user
-        nextSequence();
+        //sleep(700);// let the first animation od clicking finish before the js animate
+            nextSequence();
+
+        
     }else{
             index++;
 
@@ -143,6 +156,13 @@ let checkClick = (lastClick)=>{
 
 
 
+function sleep(miliseconds) {
+    var currentTime = new Date().getTime();
+ 
+    while (currentTime + miliseconds >= new Date().getTime()) {
+    }
+ }
+
 
 
 
@@ -152,6 +172,7 @@ $(document).ready(function() {
 
     $('#green').click(function() {
         if(pressingAllowed){
+            
             checkClick("green");
 
         }
