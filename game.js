@@ -63,11 +63,11 @@ let nextSequence = ()=>{
         playAudioFile(buttonColors[randomValue] + "Audio");
         animate(buttonColors[randomValue]);
     
-    
+        pressingAllowed = true;
+
     
         }, 900);  
 
-    pressingAllowed = true;
     level++;
 }
 
